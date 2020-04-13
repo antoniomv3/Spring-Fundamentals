@@ -7,11 +7,16 @@ import com.pluralsight.repository.SpeakerRepository;
 import java.util.List;
 
 public class SpeakerServiceImpl implements SpeakerService {
-    //Another hard coded reference with "new".
-    private SpeakerRepository repository = new HibernateSpeakerRepositoryImpl();
+
+    private SpeakerRepository repository;
 
     @Override
     public List<Speaker> findAll() {
         return repository.findAll();
+    }
+
+    //Now we've set the repository to be set up by injection
+    public void setRepository(SpeakerRepository repository) {
+        this.repository = repository;
     }
 }
